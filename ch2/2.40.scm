@@ -1,0 +1,12 @@
+(define (enumerate-interval low high)
+  (if (> low high)
+      '()
+      (cons low (enumerate-interval (+ low 1) high))))
+
+(define (unique-pairs n)
+  (flatmap (lambda (i)
+	     (let ((seq (enumerate-interval 1 i)))
+	       (map (lambda (j)
+		      (list i j))
+		    seq)))
+	   (enumerate-interval 1 n)))

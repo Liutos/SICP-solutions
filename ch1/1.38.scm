@@ -1,0 +1,21 @@
+(define (cont-frac n d k)
+  (define (helper current-index)
+    (if (> current-index k)
+	(d k)
+	(/ (n current-index)
+	   (+ (d current-index)
+	      (helper (+ 1 current-index))))))
+  (helper 1))
+
+(define (euler-d i)
+  (cond ((= 1 i) 2)
+	((= 4 i) 4)
+	((= 7 i) 6)
+	((= 10 i) 8)
+	((> i 10) (+ 8 (* 2 (- i 10))))
+	(else 1)))
+
+(define (e)
+  (+ 2 (cont-frac (lambda (i) 1.0)
+		  euler-d
+		  12)))
