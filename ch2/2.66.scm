@@ -1,0 +1,7 @@
+(define (lookup given-key set-of-records)
+  (cond ((null? set-of-records) #f)
+	((equal? given-key (key (entry set-of-records)))
+	 #t)
+	((lookup given-key (left-branch set-of-records))
+	 #t)
+	(else (lookup given-key (right-branch set-of-records)))))
